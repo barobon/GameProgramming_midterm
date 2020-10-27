@@ -1646,26 +1646,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
-    - target: {fileID: 4112054490552360153, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
-      propertyPath: Push
-      value: 0.245
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112054490552360153, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
-      propertyPath: MinX
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112054490552360153, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
-      propertyPath: MinZ
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112054490552360153, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
-      propertyPath: StartPos.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112054490552360153, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
-      propertyPath: StartPos.z
-      value: -7
-      objectReference: {fileID: 0}
     - target: {fileID: 4112054490552360157, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1709,10 +1689,6 @@ PrefabInstance:
     - target: {fileID: 4112054490552360157, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112054490552360158, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3afe6cee0295ebc48ac4f9ef6d109aef, type: 3}

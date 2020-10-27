@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -13,6 +14,12 @@ public class Ball : MonoBehaviour
     public int MaxX = 3;    // X축 한계값 설정
     public int MaxZ = 1;    // Z축 한계값 설정
     public Vector3 StartPos;// 떨어졌을 시 새로 시작하는 좌표값
+    public bool DashActivate = false;    // 대쉬 활성화 여부
+    public uint WCountValue = 0;        //대쉬 카운트 변수
+    public uint SCountValue = 0;
+    public uint ACountValue = 0;
+    public uint DCountValue = 0;
+
     Vector3 BallPos;
 
     void Start()
@@ -64,18 +71,80 @@ public class Ball : MonoBehaviour
         {
             gameObject.transform.position = new Vector3(BallPos.x - (0.01f * MoveSpeed), BallPos.y, BallPos.z);
         }
-        if (Input.GetKey(KeyCode.S)) 
+        if (Input.GetKey(KeyCode.S))
         {
-            gameObject.transform.position = new Vector3(BallPos.x + (0.01f * MoveSpeed), BallPos.y, BallPos.z); 
+            gameObject.transform.position = new Vector3(BallPos.x + (0.01f * MoveSpeed), BallPos.y, BallPos.z);
         }
-        if (Input.GetKey(KeyCode.A)) 
+        if (Input.GetKey(KeyCode.A))
         {
-            gameObject.transform.position = new Vector3(BallPos.x, BallPos.y, BallPos.z - (0.01f * MoveSpeed)); 
+            gameObject.transform.position = new Vector3(BallPos.x, BallPos.y, BallPos.z - (0.01f * MoveSpeed));
         }
-        if (Input.GetKey(KeyCode.D))  
+        if (Input.GetKey(KeyCode.D))
         {
-            gameObject.transform.position = new Vector3(BallPos.x, BallPos.y, BallPos.z + (0.01f * MoveSpeed)); 
+            gameObject.transform.position = new Vector3(BallPos.x, BallPos.y, BallPos.z + (0.01f * MoveSpeed));
         }
+
+        //키 더블클릭 입력을 구현한 부분입니다.
+        if (DashActivate == true)//dashItem을 먹었을 때
+        {
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                WCountValue++;
+                if (!IsInvoking("disable_DoubleClick"))
+                    Invoke("disable_DoubleClick", 0.5f);
+            }
+            if (WCountValue == 2)
+            {
+                CancelInvoke("disable_DoubleClick");
+                gameObject.transform.position = new Vector3(BallPos.x - 3f, BallPos.y, BallPos.z);
+                DashActivate = false;
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                SCountValue++;
+                if (!IsInvoking("disable_DoubleClick"))
+                    Invoke("disable_DoubleClick", 0.5f);
+            }
+            if (SCountValue == 2)
+            {
+                CancelInvoke("disable_DoubleClick");
+                gameObject.transform.position = new Vector3(BallPos.x + 3f, BallPos.y, BallPos.z);
+                DashActivate = false;
+            }
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                ACountValue++;
+                if (!IsInvoking("disable_DoubleClick"))
+                    Invoke("disable_DoubleClick", 0.5f);
+            }
+            if (ACountValue == 2)
+            {
+                CancelInvoke("disable_DoubleClick");
+                gameObject.transform.position = new Vector3(BallPos.x, BallPos.y, BallPos.z - 3f);
+                DashActivate = false;
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                DCountValue++;
+                if (!IsInvoking("disable_DoubleClick"))
+                    Invoke("disable_DoubleClick", 0.5f);
+            }
+            if (DCountValue == 2)
+            {
+                CancelInvoke("disable_DoubleClick");
+                gameObject.transform.position = new Vector3(BallPos.x, BallPos.y, BallPos.z + 3f);
+                DashActivate = false;
+            }
+        }
+    }
+
+    //키 더블클릭의 CountValue를 0으로 만드는 함수입니다.
+    void disable_DoubleClick()
+    {
+        WCountValue = 0;
+        SCountValue = 0;
+        ACountValue = 0;
+        DCountValue = 0;
     }
 
 }
